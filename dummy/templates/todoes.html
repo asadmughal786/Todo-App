@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container my-3">
+    This is TODOS
+    <br><br>
+    <div class="col-lg-3 col-md-3 col-sm-8">
+        <form action="" method="post">
+            {% csrf_token %}
+            Title:
+            <br>
+            <input type="text" name='title' required>
+            <br>
+            Content: <br>
+            <textarea name="contnt" id="" cols="30" rows="10"></textarea>
+            <br>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+    </div>
+    {% for obj in dos_content %}
+    <div> 
+        <hr>
+        <h2>Tilte:</h2>
+        <h3>{{obj.title}}</h3>
+        <h2>Content:</h2>
+        {% if obj.completed %}
+        <strike><p>{{obj.contnt}}</p></strike>
+        {% else %}
+        {{obj.contnt}}
+        {% endif %}
+        <br>
+        <a href= "{% url 'remove' obj.id %}"><button type="button" class="btn btn-dark">Remove</button>
+        <a href= "{% url 'mark_comp' obj.id %}"><button type="button" class="btn btn-success">Mark Completed</button></a>
+        <br>
+        <hr>
+    </div>
+    {% endfor %}
+
+{% endblock content %}
+
+
+

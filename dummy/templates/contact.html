@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container my-3">
+    This is Contact US
+    <br><br>
+    <div class="col-lg-3 col-md-3 col-sm-8">
+        <form action="" method="post">
+            {% csrf_token %}
+            Email:
+            <br>
+            <input type="email" name='email' required>
+            <br>
+            Phone Number:
+            <br>
+            <input type="phone" name="phone" required>
+            <br>
+            Address: <br>
+            <textarea name="address" id="" cols="30" rows="10"></textarea>
+            <br>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+    </div>
+</div>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profile in content %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{profile.email}}
+                </td>
+                <td>{{profile.phone}}</td>
+                <td>
+                    {{profile.address}}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
