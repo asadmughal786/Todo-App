@@ -88,3 +88,7 @@ def Product(request):
         return redirect('contact_us')
     content = Contact.objects.all()
     return render(request, 'contact.html', {"content":content})
+
+
+def main(request):
+    return HttpResponse('heloooooo main')
