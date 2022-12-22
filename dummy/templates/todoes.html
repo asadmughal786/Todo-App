@@ -31,8 +31,13 @@
         {{obj.contnt}}
         {% endif %}
         <br>
-        <a href= "{% url 'remove' obj.id %}"><button type="button" class="btn btn-dark">Remove</button>
-        <a href= "{% url 'mark_comp' obj.id %}"><button type="button" class="btn btn-success">Mark Completed</button></a>
+        
+        {% if perms.dummy.delete_todos%}
+            <a href= "{% url 'remove' obj.id %}"><button type="button" class="btn btn-dark">Remove</button>
+        {% endif %}
+        {% if perms.dummy.change_todos %}
+            <a href= "{% url 'mark_comp' obj.id %}"><button type="button" class="btn btn-success">Mark Completed</button></a>
+        {% endif %} 
         <br>
         <hr>
     </div>
